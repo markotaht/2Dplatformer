@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://d26yof2o75oxd"]
+
+[ext_resource type="Texture2D" uid="uid://gmvps843uem8" path="res://sprites/chain.png" id="1_nmvky"]
+
+[node name="TextureRect" type="TextureRect"]
+offset_left = -42.0
+offset_top = -14.5
+offset_bottom = 14.5
+texture = ExtResource("1_nmvky")
+expand_mode = 1
+stretch_mode = 1

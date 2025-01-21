@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="WeaponData" load_steps=4 format=3 uid="uid://ri4c12s4g80e"]
+
+[ext_resource type="Script" path="res://Script/WeaponsSystem/WeaponData.cs" id="1_21vro"]
+[ext_resource type="Texture2D" uid="uid://8nelsbvei5r" path="res://sprites/Sword.png" id="1_x00be"]
+[ext_resource type="PackedScene" uid="uid://dhyh08bup05sx" path="res://Scenes/sword.tscn" id="3_mhr03"]
+
+[resource]
+script = ExtResource("1_21vro")
+Icon = ExtResource("1_x00be")
+weaponScene = ExtResource("3_mhr03")

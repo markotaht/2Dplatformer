@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://hvwaxn1j36la"]
+
+[ext_resource type="Script" path="res://Script/Enemy.cs" id="1_4oqf6"]
+[ext_resource type="Texture2D" uid="uid://ctdglr68d0rdb" path="res://sprites/Enemy.png" id="1_dqg6t"]
+[ext_resource type="PackedScene" uid="uid://co7a15lbk6gp8" path="res://Scenes/EnemyBullet.tscn" id="2_dv828"]
+[ext_resource type="PackedScene" uid="uid://bbl1wxuv4l7xa" path="res://Scenes/gun.tscn" id="4_5s56k"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wrx8b"]
+radius = 16.0
+height = 64.0
+
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("Weapon") groups=["Enemies"]]
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_4oqf6")
+Weapon = NodePath("Body/Gun")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_wrx8b")
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Body"]
+texture = ExtResource("1_dqg6t")
+
+[node name="Gun" parent="Body" instance=ExtResource("4_5s56k")]
+BulletScene = ExtResource("2_dv828")

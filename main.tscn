@@ -1,0 +1,218 @@
+[gd_scene load_steps=31 format=3 uid="uid://bwjx7mko4o1f3"]
+
+[ext_resource type="PackedScene" uid="uid://dstb61k17u5vy" path="res://Scenes/Player.tscn" id="1_4p6k6"]
+[ext_resource type="Texture2D" uid="uid://dr6a8hndhas6f" path="res://sprites/brick.png" id="2_p0o0e"]
+[ext_resource type="PackedScene" uid="uid://hvwaxn1j36la" path="res://Scenes/Enemy.tscn" id="3_iv3f8"]
+[ext_resource type="PackedScene" uid="uid://cc24uhg4pbi83" path="res://Scenes/UI/Weapons.tscn" id="6_tqr38"]
+[ext_resource type="PackedScene" uid="uid://csc1hhbl0qvgu" path="res://Scenes/healthbar.tscn" id="9_04mxe"]
+[ext_resource type="Texture2D" uid="uid://tyd1kqs1jkfn" path="res://sprites/WireSheet.png" id="9_s1305"]
+[ext_resource type="Script" path="res://Script/TileMapManager.cs" id="10_ccbrl"]
+[ext_resource type="Texture2D" uid="uid://c3xeuj663u0e2" path="res://sprites/HookPoint.png" id="10_tm04p"]
+[ext_resource type="PackedScene" uid="uid://5tfxt2op7ai6" path="res://Scenes/HookPoint.tscn" id="10_wqy4n"]
+[ext_resource type="PackedScene" uid="uid://dug8arwck30wa" path="res://Scenes/Door.tscn" id="14_e3eif"]
+[ext_resource type="PackedScene" uid="uid://bhv1cuo8jct6r" path="res://Scenes/Lock.tscn" id="14_oliw0"]
+[ext_resource type="PackedScene" uid="uid://bpixmun7dyfvg" path="res://Scenes/Key.tscn" id="15_r51ls"]
+[ext_resource type="PackedScene" uid="uid://c8rwbxxl6n8uk" path="res://Scenes/KillLock.tscn" id="16_uf88f"]
+[ext_resource type="PackedScene" uid="uid://k4m8c0q4t08l" path="res://Scenes/Ladder.tscn" id="17_1k6ik"]
+[ext_resource type="Texture2D" uid="uid://h5bmib6tgiuw" path="res://sprites/WinFlag.png" id="17_t1afa"]
+[ext_resource type="PackedScene" uid="uid://d2dokcgq8tl81" path="res://Scenes/BehaviourTrees/PatrolAIBT.tscn" id="17_uc55d"]
+[ext_resource type="PackedScene" uid="uid://ms8gp2j6hfqw" path="res://Scenes/BehaviourTrees/SentryAIBT.tscn" id="18_0poyl"]
+[ext_resource type="Script" path="res://Script/WinFlag.cs" id="18_erpwi"]
+[ext_resource type="PackedScene" uid="uid://daem7axcqojp7" path="res://Scenes/WoodDoor.tscn" id="20_iln08"]
+[ext_resource type="Script" path="res://Script/actor/PlayerAimController.cs" id="23_83dn8"]
+[ext_resource type="Script" path="res://Script/WeaponsSystem/WeaponsController.cs" id="24_ekrsq"]
+[ext_resource type="Resource" uid="uid://cr4y8l6plm0or" path="res://Resources/weapons/Gun.tres" id="25_c0uh0"]
+[ext_resource type="Resource" uid="uid://ri4c12s4g80e" path="res://Resources/weapons/Sword.tres" id="26_epdfx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_vh60a"]
+font_size = 60
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_tu0l1"]
+tile_data = PackedInt32Array(0, 4, 0, 65536, 4, 1, 1, 65540, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wjxot"]
+texture = ExtResource("2_p0o0e")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_25c04"]
+resource_name = "HookPoint"
+texture = ExtResource("10_tm04p")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pmhaj"]
+texture = ExtResource("9_s1305")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_la74r"]
+tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 1
+terrain_set_0/mode = 0
+terrain_set_0/terrain_0/name = "HookPoint"
+terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+sources/0 = SubResource("TileSetAtlasSource_wjxot")
+sources/1 = SubResource("TileSetAtlasSource_25c04")
+sources/4 = SubResource("TileSetAtlasSource_pmhaj")
+pattern_0 = SubResource("TileMapPattern_tu0l1")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7fvm"]
+size = Vector2(32, 56)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Healthbar" parent="CanvasLayer" instance=ExtResource("9_04mxe")]
+offset_left = 328.0
+offset_top = 8.0
+offset_right = 613.0
+offset_bottom = 53.0
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 376.0
+offset_top = 288.0
+offset_right = 672.0
+offset_bottom = 392.0
+text = "YOU WIN!"
+label_settings = SubResource("LabelSettings_vh60a")
+
+[node name="Weapons" parent="CanvasLayer" instance=ExtResource("6_tqr38")]
+offset_right = -514.0
+offset_bottom = -520.0
+scale = Vector2(0.5, 0.5)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_la74r")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 0, 0, -65535, 0, 0, -65534, 0, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 0, 0, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 0, 0, -65522, 0, 0, -65521, 0, 0, -65520, 0, 0, -65519, 0, 0, -65518, 0, 0, -65517, 0, 0, -65516, 0, 0, -65515, 0, 0, -65514, 0, 0, -65511, 0, 0, -65510, 0, 0, -65509, 0, 0, -65508, 0, 0, -65507, 0, 0, -65506, 0, 0, -65505, 0, 0, -65504, 0, 0, -65503, 0, 0, -65502, 0, 0, -65501, 0, 0, -65512, 0, 0, 21, 0, 0, 65557, 0, 0, 131093, 0, 0, 196629, 0, 0, 262165, 0, 0, 327701, 0, 0, 393237, 0, 0, 393238, 0, 0, 393239, 0, 0, 393240, 0, 0, 393241, 0, 0, 393242, 0, 0, 393243, 0, 0, 393245, 0, 0, 393244, 0, 0, 393246, 0, 0, 393247, 0, 0, 393248, 0, 0, 393249, 0, 0, 393250, 0, 0, 393251, 0, 0, 393252, 0, 0, 393253, 0, 0, 393254, 0, 0, 393255, 0, 0, 393256, 0, 0, 393257, 0, 0, -65500, 0, 0, -65499, 0, 0, -65498, 0, 0, -65497, 0, 0, -65496, 0, 0, -65495, 0, 0, -65494, 0, 0, -65493, 0, 0, -65492, 0, 0, -65491, 0, 0, -65490, 0, 0, -65489, 0, 0, -65488, 0, 0, -65487, 0, 0, -65486, 0, 0, -65485, 0, 0, -65484, 0, 0, -65483, 0, 0, -65482, 0, 0, -65481, 0, 0, -65480, 0, 0, -65479, 0, 0, -65478, 0, 0, -65477, 0, 0, -65476, 0, 0, 393258, 0, 0, 393259, 0, 0, 393260, 0, 0, 393261, 0, 0, 393262, 0, 0, 393263, 0, 0, 393264, 0, 0, 393265, 0, 0, 393266, 0, 0, 393267, 0, 0, 393268, 0, 0, 393269, 0, 0, 393270, 0, 0, 393271, 0, 0, 393272, 0, 0, 393273, 0, 0, 393274, 0, 0, 393275, 0, 0, 393276, 0, 0, 60, 0, 0, 65596, 0, 0, 131132, 0, 0, -327645, 0, 0, -393181, 0, 0, -458717, 0, 0, -524253, 0, 0, -589789, 0, 0, -655325, 0, 0, -720861, 0, 0, -786397, 0, 0, -851933, 0, 0, -917469, 0, 0, -983005, 0, 0, -1048541, 0, 0, -1114077, 0, 0, 393277, 0, 0, 393278, 0, 0, 393279, 0, 0, 393280, 0, 0, 327744, 0, 0, 262208, 0, 0, 196672, 0, 0, 131136, 0, 0, 65600, 0, 0, 64, 0, 0, -65472, 0, 0, -65473, 0, 0, -65475, 0, 0, -131008, 0, 0, -196544, 0, 0, -262080, 0, 0, -327616, 0, 0, -327617, 0, 0, -327618, 0, 0, -327619, 0, 0, -327620, 0, 0, -327644, 0, 0, -327643, 0, 0, -327642, 0, 0, -327641, 0, 0, -327640, 0, 0, -327639, 0, 0, -327638, 0, 0, -327637, 0, 0, -327636, 0, 0, -327635, 0, 0, -327634, 0, 0, -327633, 0, 0, -327632, 0, 0, -327631, 0, 0, -327630, 0, 0, -327629, 0, 0, -327628, 0, 0, -327627, 0, 0, -589788, 0, 0, -589787, 0, 0, -589786, 0, 0, -589785, 0, 0, -983004, 0, 0, -983003, 0, 0, -983002, 0, 0, -983001, 0, 0, -983000, 0, 0, -982999, 0, 0, -982998, 0, 0, -982997, 0, 0, -982996, 0, 0, -982995, 0, 0, -982994, 0, 0, -982993, 0, 0, -982992, 0, 0, -982991, 0, 0, -982990, 0, 0, -917454, 0, 0, -851918, 0, 0, -786382, 0, 0, -720846, 0, 0, -655310, 0, 0, -589774, 0, 0, -327626, 0, 0, -327625, 0, 0, -327624, 0, 0, -393152, 0, 0, -458688, 0, 0, -524224, 0, 0, -589760, 0, 0, -655296, 0, 0, -720832, 0, 0, -786368, 0, 0, -982976, 0, 0, -917440, 0, 0, -851904, 0, 0, -1179613, 0, 0, -1245149, 0, 0, -1310685, 0, 0, -1310684, 0, 0, -1310683, 0, 0, -1310682, 0, 0, -1310681, 0, 0, -1310680, 0, 0, -1310679, 0, 0, -1310678, 0, 0, -1310677, 0, 0, -1310676, 0, 0, -1310675, 0, 0, -1245139, 0, 0, -982977, 0, 0, -982978, 0, 0, -982979, 0, 0, -982980, 0, 0, -982981, 0, 0, -982982, 0, 0, -982983, 0, 0, -982984, 0, 0, -982985, 0, 0, -982986, 0, 0, -982987, 0, 0, -1048523, 0, 0, -1114059, 0, 0, -1179595, 0, 0, -1245131, 0, 0, -1310667, 0, 0, -1310668, 0, 0, -1310669, 0, 0, -1310670, 0, 0, -1310672, 0, 0, -1310673, 0, 0, -1310674, 0, 0, -1310671, 0, 0, -589784, 4, 1, -655320, 4, 1, -720856, 4, 1, -786392, 4, 1, -851928, 4, 1, -1114064, 4, 1, -1179600, 4, 1, -917464, 131076, 0, -1245136, 131076, 0, -917465, 65540, 0, -1245137, 65540, 0, -1245138, 65540, 0, -524248, 131076, 1, -589766, 1, 0, -1245133, 1, 0, 196668, 0, 0, -524238, 0, 0)
+script = ExtResource("10_ccbrl")
+interactiveNodes = {
+"HookPoint": ExtResource("10_wqy4n")
+}
+
+[node name="Ladder" parent="." instance=ExtResource("17_1k6ik")]
+position = Vector2(752, -16)
+
+[node name="Door" parent="." instance=ExtResource("14_e3eif")]
+position = Vector2(1136, -80)
+
+[node name="Ladder2" parent="." instance=ExtResource("17_1k6ik")]
+position = Vector2(2000, -16)
+
+[node name="Door2" parent="." instance=ExtResource("14_e3eif")]
+position = Vector2(1264, -208)
+
+[node name="KillLock" parent="." node_paths=PackedStringArray("DoorController", "Enemies") instance=ExtResource("16_uf88f")]
+position = Vector2(1152, -448)
+DoorController = NodePath("../Door2")
+Enemies = [NodePath("../Enemy3"), NodePath("../Enemy2"), NodePath("../Enemy")]
+
+[node name="Door3" parent="." instance=ExtResource("14_e3eif")]
+position = Vector2(1456, -528)
+
+[node name="Lock" parent="." node_paths=PackedStringArray("DoorController") instance=ExtResource("14_oliw0")]
+position = Vector2(1552, -496)
+DoorController = NodePath("../Door3")
+
+[node name="Enemy" parent="." instance=ExtResource("3_iv3f8")]
+position = Vector2(1176, -320)
+
+[node name="SentryAIRoot" parent="Enemy" instance=ExtResource("18_0poyl")]
+
+[node name="Enemy2" parent="." instance=ExtResource("3_iv3f8")]
+position = Vector2(1368, -192)
+
+[node name="SentryAIRoot" parent="Enemy2" instance=ExtResource("18_0poyl")]
+
+[node name="Enemy3" parent="." instance=ExtResource("3_iv3f8")]
+position = Vector2(1496, -192)
+
+[node name="SentryAIRoot" parent="Enemy3" instance=ExtResource("18_0poyl")]
+
+[node name="Enemy4" parent="." instance=ExtResource("3_iv3f8")]
+position = Vector2(1504, -512)
+
+[node name="SentryAIRoot" parent="Enemy4" instance=ExtResource("18_0poyl")]
+
+[node name="Enemy5" parent="." instance=ExtResource("3_iv3f8")]
+position = Vector2(1320, -64)
+
+[node name="PatrolAIRoot" parent="Enemy5" instance=ExtResource("17_uc55d")]
+
+[node name="Enemy6" parent="." instance=ExtResource("3_iv3f8")]
+position = Vector2(1632, -72)
+
+[node name="BehaviourTreeRoot" parent="Enemy6" instance=ExtResource("18_0poyl")]
+
+[node name="WinFlag" type="Sprite2D" parent="." node_paths=PackedStringArray("winText")]
+position = Vector2(1176, -512)
+texture = ExtResource("17_t1afa")
+script = ExtResource("18_erpwi")
+winText = NodePath("../CanvasLayer/Label")
+
+[node name="Area2D" type="Area2D" parent="WinFlag"]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WinFlag/Area2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_j7fvm")
+
+[node name="Area2D" parent="." instance=ExtResource("15_r51ls")]
+position = Vector2(1168, -176)
+
+[node name="Area2D2" parent="." instance=ExtResource("20_iln08")]
+position = Vector2(1938, 160)
+
+[node name="Player" parent="." instance=ExtResource("1_4p6k6")]
+position = Vector2(816, -104)
+collision_mask = 5
+
+[node name="WoodDoor" parent="." instance=ExtResource("20_iln08")]
+position = Vector2(1620, -192)
+
+[node name="Patrul Route" type="Node" parent="."]
+
+[node name="Node2D" type="Node2D" parent="Patrul Route"]
+position = Vector2(1216, -64)
+
+[node name="Node2D2" type="Node2D" parent="Patrul Route"]
+position = Vector2(1472, -64)
+
+[node name="PlayerAimController" type="Node2D" parent="."]
+script = ExtResource("23_83dn8")
+
+[node name="WeaponsController" type="Node" parent="." node_paths=PackedStringArray("view")]
+script = ExtResource("24_ekrsq")
+view = NodePath("../CanvasLayer/Weapons")
+weaponData = Array[Resource]([ExtResource("25_c0uh0"), ExtResource("26_epdfx")])
+
+[connection signal="body_entered" from="WinFlag/Area2D" to="WinFlag" method="_on_area_2d_body_entered"]
+
+[editable path="Player"]

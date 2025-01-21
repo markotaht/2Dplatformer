@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnlv8v2130c05"]
+
+[ext_resource type="Texture2D" uid="uid://dmkp71m7yshh5" path="res://sprites/EquipmentBackground.png" id="1_a027s"]
+[ext_resource type="Script" path="res://Script/WeaponsSystem/WeaponSlot.cs" id="1_tbyx8"]
+[ext_resource type="Texture2D" uid="uid://bj05shpdn84xs" path="res://sprites/ActiveEquipment.png" id="3_duwvt"]
+
+[node name="WeaponSlot" type="TextureRect" node_paths=PackedStringArray("WeaponIcon", "ActiveIcon")]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_a027s")
+script = ExtResource("1_tbyx8")
+WeaponIcon = NodePath("WeaponIcon")
+ActiveIcon = NodePath("ActiveIcon")
+
+[node name="WeaponIcon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 14.0
+offset_right = 115.0
+offset_bottom = 114.0
+stretch_mode = 5
+
+[node name="ActiveIcon" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_duwvt")

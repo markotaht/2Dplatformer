@@ -1,0 +1,37 @@
+[gd_scene load_steps=9 format=3 uid="uid://ms8gp2j6hfqw"]
+
+[ext_resource type="Script" path="res://Script/behaviourtree/nodes/BehaviourTreeRoot.cs" id="1_wkxtq"]
+[ext_resource type="Script" path="res://Script/behaviourtree/nodes/composites/Sequence.cs" id="2_cg3xs"]
+[ext_resource type="Script" path="res://Script/Nodes/GetPlayerPosition.cs" id="3_pcr0m"]
+[ext_resource type="Script" path="res://Script/behaviourtree/nodes/composites/Selector.cs" id="4_bj0qu"]
+[ext_resource type="Script" path="res://Script/Nodes/CanSeePlayer.cs" id="5_awm8y"]
+[ext_resource type="Script" path="res://Script/Nodes/AimAtPLayer.cs" id="6_6hckd"]
+[ext_resource type="Script" path="res://Script/Nodes/HasCooldownEnded.cs" id="6_arx8i"]
+[ext_resource type="Script" path="res://Script/Nodes/ShootPlayer.cs" id="7_g5qom"]
+
+[node name="SentryAIRoot" type="Timer"]
+script = ExtResource("1_wkxtq")
+
+[node name="Sequence" type="Node" parent="."]
+script = ExtResource("2_cg3xs")
+
+[node name="GetPlayerPosition" type="Node" parent="Sequence"]
+script = ExtResource("3_pcr0m")
+
+[node name="Selector" type="Node" parent="Sequence"]
+script = ExtResource("4_bj0qu")
+
+[node name="IfSeesPlayer" type="Node" parent="Sequence/Selector"]
+script = ExtResource("2_cg3xs")
+
+[node name="Can See player" type="Node" parent="Sequence/Selector/IfSeesPlayer"]
+script = ExtResource("5_awm8y")
+
+[node name="AimAtPLayer" type="Node" parent="Sequence/Selector/IfSeesPlayer"]
+script = ExtResource("6_6hckd")
+
+[node name="Has Cooldown Ended" type="Node" parent="Sequence/Selector/IfSeesPlayer"]
+script = ExtResource("6_arx8i")
+
+[node name="ShootPlayer" type="Node" parent="Sequence/Selector/IfSeesPlayer"]
+script = ExtResource("7_g5qom")

@@ -1,0 +1,56 @@
+[gd_scene load_steps=12 format=3 uid="uid://dstb61k17u5vy"]
+
+[ext_resource type="Script" path="res://Script/player/Player.cs" id="1_b02yr"]
+[ext_resource type="Texture2D" uid="uid://of811x6lkce" path="res://sprites/Player.png" id="2_d3uy3"]
+[ext_resource type="Script" path="res://Script/LookAtMouse.cs" id="3_7dey0"]
+[ext_resource type="Script" path="res://Script/GrapplingGun.cs" id="6_sb5bq"]
+[ext_resource type="PackedScene" uid="uid://cjxxkrbo3twon" path="res://Scenes/GrapplingHook.tscn" id="7_hjmay"]
+[ext_resource type="PackedScene" uid="uid://d26yof2o75oxd" path="res://Scenes/GrapplingChain.tscn" id="8_5284e"]
+[ext_resource type="Script" path="res://Script/actor/PlayerController.cs" id="14_bnknx"]
+[ext_resource type="Script" path="res://Script/player/WeaponMount.cs" id="14_ge0jp"]
+[ext_resource type="Resource" uid="uid://bvscjaw2jeaju" path="res://Resources/PlayerData.tres" id="15_r57s7"]
+[ext_resource type="Script" path="res://Script/actor/HealthController.cs" id="16_vq67g"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ko1wv"]
+radius = 15.0
+height = 62.0
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 49
+script = ExtResource("1_b02yr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ko1wv")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("2_d3uy3")
+script = ExtResource("3_7dey0")
+
+[node name="Gun2" type="Node2D" parent="Node2D" node_paths=PackedStringArray("HookSpawn")]
+script = ExtResource("6_sb5bq")
+PlayerData = ExtResource("15_r57s7")
+GrapplingHookScene = ExtResource("7_hjmay")
+GrapplingChainScene = ExtResource("8_5284e")
+HookSpawn = NodePath("HookSpawn")
+
+[node name="HookSpawn" type="Node2D" parent="Node2D/Gun2"]
+position = Vector2(37, -1)
+
+[node name="WeaponMount" type="Node2D" parent="Node2D"]
+script = ExtResource("14_ge0jp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="ControllerComponent" type="Node" parent="."]
+script = ExtResource("14_bnknx")
+PlayerData = ExtResource("15_r57s7")
+
+[node name="HealthController" type="Node" parent="."]
+script = ExtResource("16_vq67g")

@@ -1,0 +1,65 @@
+[gd_scene load_steps=13 format=3 uid="uid://d2dokcgq8tl81"]
+
+[ext_resource type="Script" path="res://Script/behaviourtree/nodes/BehaviourTreeRoot.cs" id="1_4vdg0"]
+[ext_resource type="Script" path="res://Script/behaviourtree/nodes/composites/Sequence.cs" id="2_3pcg0"]
+[ext_resource type="Script" path="res://Script/Nodes/GetPlayerPosition.cs" id="3_p7y7t"]
+[ext_resource type="Script" path="res://Script/behaviourtree/nodes/composites/Selector.cs" id="4_443jb"]
+[ext_resource type="Script" path="res://Script/Nodes/CanSeePlayer.cs" id="5_ak6do"]
+[ext_resource type="Script" path="res://Script/Nodes/HasCooldownEnded.cs" id="6_7q5nn"]
+[ext_resource type="Script" path="res://Script/Nodes/AimAtPLayer.cs" id="6_o5b7s"]
+[ext_resource type="Script" path="res://Script/Nodes/ShootPlayer.cs" id="7_o5v0e"]
+[ext_resource type="Script" path="res://Script/behaviourtree/nodes/decorators/Succeeder.cs" id="8_41n6i"]
+[ext_resource type="Script" path="res://Script/Nodes/HasReachedTarget.cs" id="9_jpbcx"]
+[ext_resource type="Script" path="res://Script/Nodes/GetNextTarget.cs" id="10_8sc5s"]
+[ext_resource type="Script" path="res://Script/Nodes/MoveTowardsTarget.cs" id="11_4xmxp"]
+
+[node name="PatrolAIRoot" type="Timer"]
+script = ExtResource("1_4vdg0")
+
+[node name="Sequence" type="Node" parent="."]
+script = ExtResource("2_3pcg0")
+
+[node name="GetPlayerPosition" type="Node" parent="Sequence"]
+script = ExtResource("3_p7y7t")
+
+[node name="Selector" type="Node" parent="Sequence"]
+script = ExtResource("4_443jb")
+
+[node name="IfSeesPlayer" type="Node" parent="Sequence/Selector"]
+script = ExtResource("2_3pcg0")
+
+[node name="Can See player" type="Node" parent="Sequence/Selector/IfSeesPlayer"]
+script = ExtResource("5_ak6do")
+
+[node name="AimAtPlayer" type="Node" parent="Sequence/Selector/IfSeesPlayer"]
+script = ExtResource("6_o5b7s")
+
+[node name="Succeeder" type="Node" parent="Sequence/Selector/IfSeesPlayer"]
+script = ExtResource("8_41n6i")
+
+[node name="Sequence" type="Node" parent="Sequence/Selector/IfSeesPlayer/Succeeder"]
+script = ExtResource("2_3pcg0")
+
+[node name="Has Cooldown Ended" type="Node" parent="Sequence/Selector/IfSeesPlayer/Succeeder/Sequence"]
+script = ExtResource("6_7q5nn")
+
+[node name="ShootPlayer" type="Node" parent="Sequence/Selector/IfSeesPlayer/Succeeder/Sequence"]
+script = ExtResource("7_o5v0e")
+
+[node name="Patrol" type="Node" parent="Sequence/Selector"]
+script = ExtResource("2_3pcg0")
+
+[node name="Succeeder" type="Node" parent="Sequence/Selector/Patrol"]
+script = ExtResource("8_41n6i")
+
+[node name="Sequence" type="Node" parent="Sequence/Selector/Patrol/Succeeder"]
+script = ExtResource("2_3pcg0")
+
+[node name="Has Reached Target" type="Node" parent="Sequence/Selector/Patrol/Succeeder/Sequence"]
+script = ExtResource("9_jpbcx")
+
+[node name="Get next Target" type="Node" parent="Sequence/Selector/Patrol/Succeeder/Sequence"]
+script = ExtResource("10_8sc5s")
+
+[node name="Move Towards Target" type="Node" parent="Sequence/Selector/Patrol"]
+script = ExtResource("11_4xmxp")

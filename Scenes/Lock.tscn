@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhv1cuo8jct6r"]
+
+[ext_resource type="Script" path="res://Script/Lock.cs" id="1_ey856"]
+[ext_resource type="Texture2D" uid="uid://cut8pwoixixdh" path="res://sprites/Lock.png" id="1_t7h13"]
+[ext_resource type="Texture2D" uid="uid://unsmw0mpmhal" path="res://sprites/Key.png" id="3_oenfo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p100w"]
+size = Vector2(32, 32)
+
+[node name="Lock" type="Area2D" node_paths=PackedStringArray("Key")]
+collision_layer = 16
+collision_mask = 2
+script = ExtResource("1_ey856")
+Key = NodePath("Key")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t7h13")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_p100w")
+
+[node name="Key" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_oenfo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

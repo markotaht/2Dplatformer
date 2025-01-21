@@ -1,0 +1,82 @@
+[gd_scene load_steps=13 format=3 uid="uid://dug8arwck30wa"]
+
+[ext_resource type="Script" path="res://Script/DoorController.cs" id="1_3256f"]
+[ext_resource type="Texture2D" uid="uid://d2lvksixr7e7g" path="res://sprites/DoorFrame.png" id="2_u25e8"]
+[ext_resource type="Texture2D" uid="uid://biwpugt481hwa" path="res://sprites/Door.png" id="3_7v5v8"]
+[ext_resource type="Script" path="res://Script/Door.cs" id="4_bc3v2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7vr2"]
+atlas = ExtResource("3_7v5v8")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esta8"]
+atlas = ExtResource("3_7v5v8")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8dm06"]
+atlas = ExtResource("3_7v5v8")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tp7i4"]
+atlas = ExtResource("3_7v5v8")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f6kql"]
+atlas = ExtResource("3_7v5v8")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mpfvy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7vr2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esta8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8dm06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tp7i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f6kql")
+}],
+"loop": true,
+"name": &"DoorOpen",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eeeww"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_doccc"]
+size = Vector2(32, 64)
+
+[node name="Door" type="Node2D" node_paths=PackedStringArray("DoorSprite", "DoorCollider")]
+script = ExtResource("1_3256f")
+DoorSprite = NodePath("Door")
+DoorCollider = NodePath("StaticBody2D/Door")
+
+[node name="DoorFrame" type="Sprite2D" parent="."]
+texture = ExtResource("2_u25e8")
+
+[node name="Door" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 16)
+sprite_frames = SubResource("SpriteFrames_mpfvy")
+animation = &"DoorOpen"
+script = ExtResource("4_bc3v2")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 10
+
+[node name="DoorFrame" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_eeeww")
+
+[node name="Door" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 16)
+shape = SubResource("RectangleShape2D_doccc")
+
+[connection signal="animation_looped" from="Door" to="Door" method="_on_animation_looped"]

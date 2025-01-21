@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://csc1hhbl0qvgu"]
+
+[ext_resource type="Script" path="res://Script/HealthBar.cs" id="1_fh6l1"]
+[ext_resource type="Texture2D" uid="uid://cgsafjbvv1eik" path="res://sprites/hud_heartEmpty.png" id="2_ohdxg"]
+
+[node name="Healthbar" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 5
+script = ExtResource("1_fh6l1")
+
+[node name="1" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_ohdxg")
+stretch_mode = 2
+
+[node name="2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_ohdxg")
+stretch_mode = 2
+
+[node name="3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_ohdxg")
+stretch_mode = 2
+
+[node name="4" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_ohdxg")
+stretch_mode = 2
+
+[node name="5" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_ohdxg")
+stretch_mode = 2

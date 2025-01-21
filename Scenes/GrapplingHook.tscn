@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://cjxxkrbo3twon"]
+
+[ext_resource type="Script" path="res://Script/GrapplingHook.cs" id="1_ysi4o"]
+[ext_resource type="Texture2D" uid="uid://bm57fke2oyitk" path="res://sprites/Hook.png" id="2_wddin"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_orbkp"]
+size = Vector2(9, 26)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+collision_layer = 128
+collision_mask = 69
+mass = 0.05
+gravity_scale = 0.0
+max_contacts_reported = 1
+contact_monitor = true
+freeze_mode = 1
+script = ExtResource("1_ysi4o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14.5, -1)
+shape = SubResource("RectangleShape2D_orbkp")
+
+[node name="GrapplingHook" type="Node2D" parent="."]
+
+[node name="Hook" type="TextureRect" parent="GrapplingHook"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -21.0
+offset_top = -14.5
+offset_right = 21.0
+offset_bottom = 14.5
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_wddin")
+stretch_mode = 2
+flip_v = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

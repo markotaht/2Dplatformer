@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7v6vy0p8510t"]
+
+[ext_resource type="Script" path="res://Script/KillLockParticle.cs" id="1_5s1ej"]
+[ext_resource type="Texture2D" uid="uid://b3w55w7kgb146" path="res://sprites/Bullet.png" id="1_m1h71"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_os7qj"]
+radius = 16.0
+
+[node name="KillLockParticle" type="Node2D"]
+script = ExtResource("1_5s1ej")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_m1h71")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_os7qj")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

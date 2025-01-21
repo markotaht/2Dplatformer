@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://cc24uhg4pbi83"]
+
+[ext_resource type="Script" path="res://Script/WeaponsSystem/WeaponsView.cs" id="1_1fl33"]
+[ext_resource type="PackedScene" uid="uid://bnlv8v2130c05" path="res://Scenes/UI/WeaponSlot.tscn" id="2_6sd0g"]
+[ext_resource type="Texture2D" uid="uid://cano0aqn4ut1k" path="res://sprites/ItemLoc.png" id="3_ixtlt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_k3wpj"]
+font_size = 65
+font_color = Color(0, 0, 0, 1)
+
+[node name="Weapons" type="Control" node_paths=PackedStringArray("weaponSlots")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1fl33")
+weaponSlots = [NodePath("WeaponSlot"), NodePath("WeaponSlot2"), NodePath("WeaponSlot3")]
+
+[node name="WeaponSlot" parent="." instance=ExtResource("2_6sd0g")]
+layout_mode = 0
+offset_left = 128.0
+offset_right = 256.0
+offset_bottom = 128.0
+
+[node name="WeaponSlot2" parent="." instance=ExtResource("2_6sd0g")]
+layout_mode = 0
+offset_left = 256.0
+offset_right = 384.0
+offset_bottom = 128.0
+
+[node name="WeaponSlot3" parent="." instance=ExtResource("2_6sd0g")]
+layout_mode = 0
+offset_left = 384.0
+offset_right = 512.0
+offset_bottom = 128.0
+
+[node name="LeftPromt" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 128.0
+texture = ExtResource("3_ixtlt")
+
+[node name="Label" type="Label" parent="LeftPromt"]
+layout_mode = 0
+offset_right = 127.0
+offset_bottom = 126.0
+text = "Q"
+label_settings = SubResource("LabelSettings_k3wpj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RightPromt" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 511.0
+offset_right = 639.0
+offset_bottom = 128.0
+texture = ExtResource("3_ixtlt")
+
+[node name="Label2" type="Label" parent="RightPromt"]
+layout_mode = 0
+offset_right = 127.0
+offset_bottom = 126.0
+text = "E"
+label_settings = SubResource("LabelSettings_k3wpj")
+horizontal_alignment = 1
+vertical_alignment = 1

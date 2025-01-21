@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bvscjaw2jeaju"]
+
+[ext_resource type="Script" path="res://Script/PlayerData.cs" id="1_rvors"]
+
+[resource]
+script = ExtResource("1_rvors")
+Hooked = false
+HookPoint = Vector2(0, 0)
+Gravity = 980.0
+Speed = 300.0
+JumpVelocity = 600.0

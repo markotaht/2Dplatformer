@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://5tfxt2op7ai6"]
+
+[ext_resource type="Script" path="res://Script/HookPoint.cs" id="1_1fgql"]
+[ext_resource type="Texture2D" uid="uid://c3xeuj663u0e2" path="res://sprites/HookPoint.png" id="1_8jggw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gk1c8"]
+size = Vector2(32, 32)
+
+[node name="StaticBody2D" type="StaticBody2D" groups=["HookPoints"]]
+collision_layer = 64
+collision_mask = 128
+script = ExtResource("1_1fgql")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_8jggw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gk1c8")

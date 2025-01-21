@@ -1,0 +1,74 @@
+[gd_scene load_steps=9 format=3 uid="uid://daem7axcqojp7"]
+
+[ext_resource type="Script" path="res://Script/interactable/WoodDoor.cs" id="1_jypti"]
+[ext_resource type="Texture2D" uid="uid://cjmd6d3f17iuf" path="res://sprites/WoodDoor.png" id="1_massm"]
+[ext_resource type="Texture2D" uid="uid://cano0aqn4ut1k" path="res://sprites/ItemLoc.png" id="3_jlt1s"]
+[ext_resource type="Script" path="res://Script/KeyPromt.cs" id="4_j7x0a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ptl5"]
+size = Vector2(40, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n4jbb"]
+atlas = ExtResource("1_massm")
+region = Rect2(2, 0, 22, 64)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cght1"]
+size = Vector2(16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i1pwl"]
+atlas = ExtResource("1_massm")
+region = Rect2(41, 0, 42, 64)
+
+[node name="WoodDoor" type="Area2D" node_paths=PackedStringArray("DoorOpen", "DoorClose", "KeyPromt")]
+collision_mask = 2
+script = ExtResource("1_jypti")
+DoorOpen = NodePath("DoorOpen")
+DoorClose = NodePath("DoorClosed")
+KeyPromt = NodePath("KeyPromt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 0)
+shape = SubResource("RectangleShape2D_5ptl5")
+
+[node name="DoorClosed" type="TextureRect" parent="."]
+offset_left = -16.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 32.0
+texture = SubResource("AtlasTexture_n4jbb")
+stretch_mode = 2
+
+[node name="StaticBody2D" type="StaticBody2D" parent="DoorClosed"]
+collision_mask = 143
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorClosed/StaticBody2D"]
+position = Vector2(14, 32)
+shape = SubResource("RectangleShape2D_cght1")
+
+[node name="DoorOpen" type="TextureRect" parent="."]
+visible = false
+offset_left = -40.0
+offset_top = -32.0
+offset_right = 2.0
+offset_bottom = 32.0
+texture = SubResource("AtlasTexture_i1pwl")
+stretch_mode = 2
+
+[node name="KeyPromt" type="Sprite2D" parent="." node_paths=PackedStringArray("promptLabel")]
+visible = false
+position = Vector2(0, -50)
+scale = Vector2(0.875, 0.875)
+texture = ExtResource("3_jlt1s")
+script = ExtResource("4_j7x0a")
+promptLabel = NodePath("Label")
+
+[node name="Label" type="Label" parent="KeyPromt"]
+offset_left = -4.57143
+offset_top = -11.4286
+offset_right = 4.42857
+offset_bottom = 14.5714
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "F"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
